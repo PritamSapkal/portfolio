@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pritam Vijay Sapkal | Flutter Developer Portfolio</title>
+  
+  <!-- Inter Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eef8ff',
+              100: '#d9f0ff',
+              400: '#38bdf8',
+              500: '#0284c7',
+              600: '#0369a1',
+              flutter: '#02569B',
+              flutterLight: '#29B6F6',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom transition smoothness */
+    * {
+      transition-property: background-color, border-color, color, fill, stroke;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 200ms;
+    }
+    .badge-glow {
+      box-shadow: 0 0 15px -3px rgba(14, 165, 233, 0.45);
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 dark:bg-[#0B1120] dark:text-slate-100 min-h-screen selection:bg-sky-500 selection:text-white antialiased font-sans">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-[#0B1120]/80 border-b border-slate-200 dark:border-slate-800/80">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="#hero" class="flex items-center gap-2 group">
+        <span class="w-8 h-8 rounded-lg bg-gradient-to-tr from-sky-600 to-cyan-400 flex items-center justify-center text-white font-bold text-sm shadow-md group-hover:scale-105 transition-transform">
+          PS
+        </span>
+        <span class="font-bold tracking-tight text-slate-800 dark:text-slate-100">
+          Pritam<span class="text-sky-500">.dev</span>
+        </span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="#about" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">About</a>
+        <a href="#projects" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Projects</a>
+        <a href="#skills" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Skills</a>
+        <a href="#achievements" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Education & Honors</a>
+        <a href="#contact" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Contact</a>
+      </nav>
+
+      <!-- Theme Switcher & Action Button -->
+      <div class="flex items-center gap-3">
+        <button id="themeToggleBtn" type="button" aria-label="Toggle theme" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-sky-500 dark:hover:text-sky-400 hover:border-sky-500/40 focus:outline-none">
+          <!-- Sun Icon (shown in dark mode) -->
+          <svg id="sunIcon" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <!-- Moon Icon (shown in light mode) -->
+          <svg id="moonIcon" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+
+        <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-xl bg-sky-600 hover:bg-sky-500 text-white shadow-sm transition-all hover:shadow-sky-500/20 hover:-translate-y-0.5">
+          <span>Get in touch</span>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobileMenuBtn" aria-label="Open navigation menu" class="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav dropdown -->
+    <div id="mobileMenu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-[#0B1120]/95 px-4 pt-2 pb-4 space-y-2">
+      <a href="#about" class="block px-3 py-2 rounded-lg text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">About</a>
+      <a href="#projects" class="block px-3 py-2 rounded-lg text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Projects</a>
+      <a href="#skills" class="block px-3 py-2 rounded-lg text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Skills</a>
+      <a href="#achievements" class="block px-3 py-2 rounded-lg text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Education & Honors</a>
+      <a href="#contact" class="block px-3 py-2 rounded-lg text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Contact</a>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 space-y-24">
+    <section id="hero" class="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 pt-4">
+      <div class="flex-1 space-y-6 text-center lg:text-left">
+        <!-- Status indicator badge -->
+        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full text-xs font-medium border border-sky-500/20 bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>Actively seeking Flutter Developer Internships</span>
+        </div>
+
+        <div class="space-y-2">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
+            Hi, I'm <span class="bg-gradient-to-r from-sky-600 via-cyan-500 to-indigo-500 bg-clip-text text-transparent">Pritam Vijay Sapkal</span>
+          </h1>
+          <p class="text-lg sm:text-xl font-medium text-slate-600 dark:text-slate-400">
+            Flutter & Cross-Platform Mobile Application Developer
+          </p>
+        </div>
+
+        <p class="text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed text-sm sm:text-base">
+          Final-year B.Tech CSE student at Sharad Institute of Technology College of Engineering (DBATU, CGPA: 8.21). Proven experience building high-performance mobile apps using Flutter, Dart, Riverpod, Firebase, and offline-first databases.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+          <a href="#projects" class="px-6 py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-sm shadow-lg shadow-sky-600/20 hover:shadow-sky-500/30 transition-all hover:-translate-y-0.5 flex items-center gap-2">
+            <span>Explore Projects</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+          <a href="https://github.com/PritamSapkal" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl border border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 font-medium text-sm transition-all flex items-center gap-2">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+            </svg>
+            <span>GitHub Profile</span>
+          </a>
+          <a href="https://www.linkedin.com/in/pritam752/" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl border border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 font-medium text-sm transition-all flex items-center gap-2">
+            <svg class="w-4 h-4 fill-current text-sky-600 dark:text-sky-400" viewBox="0 0 24 24">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+            </svg>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Profile Avatar Container -->
+      <div class="relative flex-shrink-0">
+        <!-- Glow / Background effect -->
+        <div class="absolute -inset-2 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-full blur-xl opacity-40 dark:opacity-50 animate-pulse"></div>
+        <div class="relative w-64 h-64 sm:w-72 sm:h-72 rounded-full p-2 bg-gradient-to-b from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 shadow-2xl border border-slate-200 dark:border-slate-800">
+          <img
+            src="MyImage.png"
+            alt="Pritam Vijay Sapkal"
+            id="profileImg"
+            class="w-full h-full object-cover object-top rounded-full shadow-inner"
+          />
+        </div>
+        <!-- Flutter badge overlay -->
+        <div class="absolute bottom-2 right-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-2.5 shadow-lg flex items-center gap-2">
+          <svg class="w-6 h-6 text-sky-500" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M14.314 0L2.3 12 6 15.7 21.684 0h-7.37zM6.02 15.686L14.314 24h7.37L13.39 15.686H6.02z" />
+          </svg>
+          <span class="text-xs font-bold text-slate-800 dark:text-slate-200 pr-1">Flutter Dev</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="scroll-mt-24">
+      <div class="border border-slate-200 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/60 rounded-3xl p-6 sm:p-10 shadow-sm backdrop-blur">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 mb-2 font-mono">01. Overview</h2>
+        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">Professional Profile</h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="md:col-span-2 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed space-y-4">
+            <p>
+              I am a final-year B.Tech Computer Science and Engineering student at <strong class="text-slate-900 dark:text-slate-100">Sharad Institute of Technology College of Engineering (DBATU)</strong> with hands-on expertise building scalable, cross-platform mobile apps in <strong class="text-sky-600 dark:text-sky-400">Flutter and Dart</strong>.
+            </p>
+            <p>
+              My background spans robust state management (<span class="font-mono text-xs bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">Riverpod</span>, <span class="font-mono text-xs bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">Provider</span>), local storage solutions (<span class="font-mono text-xs bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">Hive</span>, <span class="font-mono text-xs bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">SharedPreferences</span>), clean REST API integration, and cloud backends via Firebase.
+            </p>
+            <p>
+              Recognized as a <strong class="text-slate-900 dark:text-slate-100">Top 10 National Finalist</strong> at IIT Bombay's e-Yantra Innovation Challenge and recipient of the esteemed <strong class="text-slate-900 dark:text-slate-100">Cummins Nurturing Brilliance Scholarship</strong>.
+            </p>
+          </div>
+
+          <!-- Fast stats / info box -->
+          <div class="space-y-3 bg-slate-50 dark:bg-slate-950/60 p-5 rounded-2xl border border-slate-200 dark:border-slate-800">
+            <div class="pb-3 border-b border-slate-200 dark:border-slate-800">
+              <span class="text-xs text-slate-500 dark:text-slate-400 uppercase font-mono">Location</span>
+              <p class="text-sm font-semibold text-slate-800 dark:text-slate-200 mt-0.5">Sangli, Maharashtra, India</p>
+            </div>
+            <div class="pb-3 border-b border-slate-200 dark:border-slate-800">
+              <span class="text-xs text-slate-500 dark:text-slate-400 uppercase font-mono">Degree</span>
+              <p class="text-sm font-semibold text-slate-800 dark:text-slate-200 mt-0.5">B.Tech Computer Science (CGPA: 8.21)</p>
+            </div>
+            <div class="pb-3 border-b border-slate-200 dark:border-slate-800">
+              <span class="text-xs text-slate-500 dark:text-slate-400 uppercase font-mono">Availability</span>
+              <p class="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mt-0.5">Immediate (Internship / Full-time)</p>
+            </div>
+            <div>
+              <span class="text-xs text-slate-500 dark:text-slate-400 uppercase font-mono">Spoken Languages</span>
+              <p class="text-sm font-semibold text-slate-800 dark:text-slate-200 mt-0.5">English, Hindi, Marathi</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="scroll-mt-24 space-y-8">
+      <div>
+        <h2 class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 mb-2 font-mono">02. Selected Work</h2>
+        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Apps &amp; Projects</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">A closer look at mobile apps, their features, and release builds.</p>
+      </div>
+
+      <div class="space-y-6">
+        <!-- 1. KrishiSetu -->
+        <article class="border border-amber-300/70 dark:border-amber-700/60 rounded-2xl p-5 sm:p-7 bg-white dark:bg-slate-900/60 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+            <div class="relative w-16 h-16 flex-shrink-0">
+              <img src="project_assets/krishisetu/icon.jpg" alt="KrishiSetu app icon" class="w-16 h-16 rounded-2xl object-cover shadow-md border border-slate-200 dark:border-slate-700" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')" />
+              <div class="hidden w-16 h-16 rounded-2xl bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 items-center justify-center font-bold text-lg shadow-md border border-amber-300/50">KS</div>
+            </div>
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-2 mb-1">
+                <h4 class="text-xl font-bold text-slate-900 dark:text-white">KrishiSetu</h4>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 border border-amber-300/50">
+                  <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>Under Active Development
+                </span>
+              </div>
+              <div class="flex flex-wrap items-center gap-2 text-xs text-slate-600 dark:text-slate-400">
+                <span>AgriTech &bull; Millet Ecosystem Marketplace</span>
+                <span class="px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">In Development</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-3 mt-5">
+            <a href="https://github.com/PritamSapkal/KrishiSetu" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub Repo
+            </a>
+            <button type="button" disabled aria-label="APK in Progress" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-sm font-semibold cursor-not-allowed opacity-80">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15V3m0 0L8 7m4-4l4 4M5 13v5a3 3 0 003 3h8a3 3 0 003-3v-5"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11v2m0 0a2 2 0 100 4 2 2 0 000-4z"/></svg>APK in Progress
+            </button>
+          </div>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-5">Developing the Flutter mobile client for an extensive millet-ecosystem marketplace. Role-based workflows for farmers, consumers, processors, FPOs, and SHGs with REST API integrations and offline session caching.</p>
+          <div class="flex flex-wrap gap-2 mt-4" aria-label="Technology stack">
+            <span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Flutter</span><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Dart</span><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Riverpod</span><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">REST APIs</span><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">HTTP</span><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Hive</span><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">SharedPreferences</span>
+          </div>
+          <div class="mt-5 rounded-xl border-2 border-dashed border-amber-300 dark:border-amber-800 bg-amber-50/70 dark:bg-amber-950/20 px-5 py-6 text-center text-sm text-amber-900 dark:text-amber-200">
+            <p class="font-semibold">App mockups &amp; screenshots currently under active development</p>
+            <p class="text-xs mt-1 text-amber-800/80 dark:text-amber-300/80">Previews coming soon</p>
+          </div>
+        </article>
+
+        <!-- 2. ShopNest -->
+        <article class="border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-7 bg-white dark:bg-slate-900/60 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+            <div class="relative w-16 h-16 flex-shrink-0"><img src="project_assets/shopnest/icon.png" alt="ShopNest app icon" class="w-16 h-16 rounded-2xl object-cover shadow-md border border-slate-200 dark:border-slate-700" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')" /><div class="hidden w-16 h-16 rounded-2xl bg-sky-100 dark:bg-sky-950 text-sky-800 dark:text-sky-300 items-center justify-center font-bold text-lg shadow-md border border-sky-200 dark:border-sky-800">SN</div></div>
+            <div class="min-w-0 flex-1"><div class="flex flex-wrap items-center gap-2 mb-1"><h4 class="text-xl font-bold text-slate-900 dark:text-white">ShopNest</h4><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-300/40">v1.0.0 Production APK</span></div><div class="flex flex-wrap items-center gap-2 text-xs text-slate-600 dark:text-slate-400"><span>Smart Shopping Organizer &amp; Item Tracker</span><span class="px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">55.12 MB</span></div></div>
+          </div>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-5">Shopping and catalog application with category filtering, persistent cart storage, responsive components, and Light/Dark/System theme support.</p>
+          <div class="flex flex-wrap gap-2 mt-4" aria-label="Technology stack"><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Flutter</span><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Dart</span><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Riverpod</span><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Hive DB</span><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Clean Architecture</span></div>
+          <div class="flex flex-wrap gap-3 mt-5">
+            <a href="https://github.com/PritamSapkal/ShopNest" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"><svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub Repo</a>
+            <a href="https://github.com/PritamSapkal/ShopNest/releases/download/V1.0.0/ShopNest_V1.0.0.apk" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-sm font-semibold shadow-sm"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v12m0 0l-4-4m4 4l4-4M5 17v3h14v-3"/></svg>Download APK <span class="text-sky-100">55.12 MB</span></a>
+          </div>
+          <div class="flex gap-4 overflow-x-auto snap-x pb-2 mt-5 scrollbar-thin" aria-label="ShopNest screenshots">
+            <img src="project_assets/shopnest/screen1.png" alt="ShopNest screenshot 1" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+            <img src="project_assets/shopnest/screen2.png" alt="ShopNest screenshot 2" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+            <img src="project_assets/shopnest/screen3.png" alt="ShopNest screenshot 3" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+            <img src="project_assets/shopnest/screen4.png" alt="ShopNest screenshot 4" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+            <img src="project_assets/shopnest/screen5.png" alt="ShopNest screenshot 5" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+            <img src="project_assets/shopnest/screen6.png" alt="ShopNest screenshot 6" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+            <img src="project_assets/shopnest/screen7.png" alt="ShopNest screenshot 7" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+            <img src="project_assets/shopnest/screen8.png" alt="ShopNest screenshot 8" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+            <img src="project_assets/shopnest/screen9.png" alt="ShopNest screenshot 9" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+          </div>
+        </article>
+
+        <!-- 3. SaaRathi -->
+        <article class="border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-7 bg-white dark:bg-slate-900/60 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+            <div class="relative w-16 h-16 flex-shrink-0"><img src="project_assets/saarathi/icon.png" alt="SaaRathi app icon" class="w-16 h-16 rounded-2xl object-cover shadow-md border border-slate-200 dark:border-slate-700" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')" /><div class="hidden w-16 h-16 rounded-2xl bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 items-center justify-center font-bold text-lg shadow-md border border-cyan-200 dark:border-cyan-800">SR</div></div>
+            <div class="min-w-0 flex-1"><div class="flex flex-wrap items-center gap-2 mb-1"><h4 class="text-xl font-bold text-slate-900 dark:text-white">SaaRathi</h4><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-sky-100 text-sky-800 dark:bg-sky-950/60 dark:text-sky-300 border border-sky-200 dark:border-sky-800">v1.0.3 Release</span></div><div class="flex flex-wrap items-center gap-2 text-xs text-slate-600 dark:text-slate-400"><span>Transit &amp; Campus Fleet Logistics</span><span class="px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">77.53 MB</span></div></div>
+          </div>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-5">College bus fleet tracking system featuring real-time GPS route and stop visualization, attendance logging, and dual role-based workflows for drivers and students.</p>
+          <div class="flex flex-wrap gap-2 mt-4" aria-label="Technology stack"><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Flutter</span><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Firebase Auth</span><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Cloud Firestore</span><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">flutter_map</span><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Geolocator</span></div>
+          <div class="flex flex-wrap gap-3 mt-5"><a href="https://github.com/PritamSapkal/Sarrathi_Project" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"><svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66-1.56.24-2.88.12-3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub Repo</a><a href="https://github.com/PritamSapkal/Sarrathi_Project/releases/download/Saarathi/Saarathi_V_1.0.3.apk" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-sm font-semibold shadow-sm"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v12m0 0l-4-4m4 4l4-4M5 17v3h14v-3"/></svg>Download APK <span class="text-sky-100">77.53 MB</span></a></div>
+          <div class="flex gap-4 overflow-x-auto snap-x pb-2 mt-5 scrollbar-thin" aria-label="SaaRathi screenshots">
+            <img src="project_assets/saarathi/screen1.png" alt="SaaRathi screenshot 1" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+            <img src="project_assets/saarathi/screen2.png" alt="SaaRathi screenshot 2" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+            <img src="project_assets/saarathi/screen3.png" alt="SaaRathi screenshot 3" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+            <img src="project_assets/saarathi/screen4.png" alt="SaaRathi screenshot 4" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+            <img src="project_assets/saarathi/screen5.png" alt="SaaRathi screenshot 5" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+          </div>
+        </article>
+
+        <!-- 4. Ledgerly -->
+        <article class="border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-7 bg-white dark:bg-slate-900/60 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+            <div class="relative w-16 h-16 flex-shrink-0"><img src="project_assets/ledgerly/icon.png" alt="Ledgerly app icon" class="w-16 h-16 rounded-2xl object-cover shadow-md border border-slate-200 dark:border-slate-700" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')" /><div class="hidden w-16 h-16 rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 items-center justify-center font-bold text-lg shadow-md border border-emerald-200 dark:border-emerald-800">L</div></div>
+            <div class="min-w-0 flex-1"><div class="flex flex-wrap items-center gap-2 mb-1"><h4 class="text-xl font-bold text-slate-900 dark:text-white">Ledgerly</h4><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">v1.0.3 &bull; 100% Offline</span></div><div class="flex flex-wrap items-center gap-2 text-xs text-slate-600 dark:text-slate-400"><span>Personal Finance &amp; Expense Tracker</span><span class="px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">57.39 MB</span></div></div>
+          </div>
+          <p class="text-sm font-semibold text-slate-700 dark:text-slate-200 mt-5">Smart Tracking. Absolute Privacy. Continuous Growth.</p>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-2">Offline-first expense tracker built for localized data integrity, zero telemetry, and instant transactional queries.</p>
+          <div class="flex flex-wrap gap-2 mt-4" aria-label="Technology stack"><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Flutter</span><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Dart</span><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Offline NoSQL Key-Value</span><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">High Privacy</span></div>
+          <div class="flex flex-wrap gap-3 mt-5"><a href="https://github.com/PritamSapkal/ledgerly" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"><svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66-1.56.24-2.88.12-3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub Repo</a><a href="https://github.com/PritamSapkal/ledgerly/releases/download/v1.0.3/Ledgerly.v1.0.3.apk" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-sm font-semibold shadow-sm"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v12m0 0l-4-4m4 4l4-4M5 17v3h14v-3"/></svg>Download APK <span class="text-sky-100">57.39 MB</span></a></div>
+          <div class="flex gap-4 overflow-x-auto snap-x pb-2 mt-5 scrollbar-thin" aria-label="Ledgerly screenshots">
+            <img src="project_assets/ledgerly/screen1.png" alt="Ledgerly screenshot 1" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+            <img src="project_assets/ledgerly/screen2.png" alt="Ledgerly screenshot 2" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+            <img src="project_assets/ledgerly/screen3.png" alt="Ledgerly screenshot 3" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+            <img src="project_assets/ledgerly/screen4.png" alt="Ledgerly screenshot 4" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+            <img src="project_assets/ledgerly/screen5.png" alt="Ledgerly screenshot 5" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+            <img src="project_assets/ledgerly/screen6.png" alt="Ledgerly screenshot 6" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+          </div>
+        </article>
+
+        <!-- 5. QuizCraft -->
+        <article class="border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-7 bg-white dark:bg-slate-900/60 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+            <div class="relative w-16 h-16 flex-shrink-0"><img src="project_assets/quizecraft/icon.png" alt="QuizCraft app icon" class="w-16 h-16 rounded-2xl object-cover shadow-md border border-slate-200 dark:border-slate-700" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')" /><div class="hidden w-16 h-16 rounded-2xl bg-rose-100 dark:bg-rose-950 text-rose-800 dark:text-rose-300 items-center justify-center font-bold text-lg shadow-md border border-rose-200 dark:border-rose-800">QC</div></div>
+            <div class="min-w-0 flex-1"><div class="flex flex-wrap items-center gap-2 mb-1"><h4 class="text-xl font-bold text-slate-900 dark:text-white">QuizCraft</h4><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-rose-100 text-rose-800 dark:bg-rose-950/60 dark:text-rose-300 border border-rose-200 dark:border-rose-800">v1.0.0 &bull; Practice App</span></div><div class="flex flex-wrap items-center gap-2 text-xs text-slate-600 dark:text-slate-400"><span>EdTech &amp; Multi-Language Quizzes</span><span class="px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">50.00 MB</span></div></div>
+          </div>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-5">Interactive mobile quiz platform built for coding practice. Supports multiple programming language categories, question timers, dynamic score evaluation, and an end-of-quiz answer review breakdown.</p>
+          <div class="flex flex-wrap gap-2 mt-4" aria-label="Technology stack"><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Flutter</span><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Dart</span><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Modular UI State</span></div>
+          <div class="flex flex-wrap gap-3 mt-5"><a href="https://github.com/PritamSapkal/QuizeCraft" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"><svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66-1.56.24-2.88.12-3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub Repo</a><a href="https://github.com/PritamSapkal/QuizeCraft/releases/download/v1.0.0/QuizCraft-v1.0.apk" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-sm font-semibold shadow-sm"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v12m0 0l-4-4m4 4l4-4M5 17v3h14v-3"/></svg>Download APK <span class="text-sky-100">50.00 MB</span></a></div>
+          <div class="flex gap-4 overflow-x-auto snap-x pb-2 mt-5 scrollbar-thin" aria-label="QuizCraft screenshots">
+            <img src="project_assets/quizecraft/screen1.png" alt="QuizCraft screenshot 1" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+            <img src="project_assets/quizecraft/screen2.png" alt="QuizCraft screenshot 2" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+            <img src="project_assets/quizecraft/screen3.png" alt="QuizCraft screenshot 3" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+            <img src="project_assets/quizecraft/screen4.png" alt="QuizCraft screenshot 4" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+            <img src="project_assets/quizecraft/screen5.png" alt="QuizCraft screenshot 5" loading="lazy" class="w-40 sm:w-48 flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 object-cover snap-start" onerror="this.style.display='none'" />
+          </div>
+        </article>
+
+        <!-- Existing non-app project -->
+        <article class="border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-7 bg-white dark:bg-slate-900/60 shadow-sm">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-3"><span class="text-xs font-mono font-bold text-sky-600 dark:text-sky-400">Hardware &amp; Sensors</span><span class="text-xs px-2.5 py-1 rounded-full bg-sky-100 text-sky-800 dark:bg-sky-950/60 dark:text-sky-300">IIT Bombay e-Yantra Finalist Project</span></div>
+          <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Pothole Tracker &mdash; Your Guide to Safer Roads</h4>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">Engineered the hardware and sensor integration layer for real-time road-condition monitoring. Configured sensors to capture surface anomalies and interfaced them with the core monitoring system, conducting extensive validation tests for reliable pothole detection.</p>
+          <div class="flex flex-wrap gap-2"><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">IoT &amp; Sensors</span><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Hardware Integration</span><span class="px-2.5 py-1 text-xs font-mono rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Road Safety Telemetry</span></div>
+        </article>
+      </div>
+    </section>
+
+    <script>
+      document.querySelectorAll('#projects article').forEach((card) => {
+        const actions = Array.from(card.children).find((child) =>
+          child.classList.contains('gap-3') && child.classList.contains('mt-5') && child.querySelector('a, button')
+        );
+        const description = card.querySelector('p');
+
+        if (actions && description) {
+          card.insertBefore(actions, description);
+        }
+      });
+    </script>
+
+    <section id="skills" class="scroll-mt-24 space-y-6">
+      <div>
+        <h2 class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 mb-2 font-mono">03. Competencies</h2>
+        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Technical Arsenal</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Tools and technologies applied across academic and independent engineering work.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <!-- Mobile Dev -->
+        <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60">
+          <div class="w-10 h-10 rounded-xl bg-sky-100 dark:bg-sky-950/60 flex items-center justify-center text-sky-600 dark:text-sky-400 mb-4">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          </div>
+          <h4 class="font-bold text-slate-900 dark:text-white text-base mb-3">Mobile Stack</h4>
+          <ul class="text-xs space-y-2 text-slate-600 dark:text-slate-300">
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span>Flutter & Dart</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span>Riverpod & Provider</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span>REST APIs & HTTP</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span>Responsive UI/UX</li>
+          </ul>
+        </div>
+
+        <!-- Storage & Databases -->
+        <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60">
+          <div class="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/60 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mb-4">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2 1.5 3 3.5 3s3.5-1 3.5-3V7m-7 0C4 5 5.5 4 7.5 4S11 5 11 7m-7 0c0 2 1.5 3 3.5 3S11 9 11 7m6-3v10c0 2 1.5 3 3.5 3s3.5-1 3.5-3V4m-7 0c0-2 1.5-3 3.5-3s3.5 1 3.5 3m-7 0c0 2 1.5 3 3.5 3s3.5-1 3.5-3"/></svg>
+          </div>
+          <h4 class="font-bold text-slate-900 dark:text-white text-base mb-3">Storage & DB</h4>
+          <ul class="text-xs space-y-2 text-slate-600 dark:text-slate-300">
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>Firebase Firestore</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>Hive (NoSQL Key-Value)</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>SharedPreferences</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>MySQL</li>
+          </ul>
+        </div>
+
+        <!-- Languages & CS -->
+        <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60">
+          <div class="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-950/60 flex items-center justify-center text-cyan-600 dark:text-cyan-400 mb-4">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+          </div>
+          <h4 class="font-bold text-slate-900 dark:text-white text-base mb-3">Languages & CS</h4>
+          <ul class="text-xs space-y-2 text-slate-600 dark:text-slate-300">
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>Dart, Java, SQL, C</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>Object-Oriented Programming</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>Database Management Systems</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>OS & Computer Networks</li>
+          </ul>
+        </div>
+
+        <!-- Dev Tools -->
+        <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60">
+          <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-4">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <h4 class="font-bold text-slate-900 dark:text-white text-base mb-3">Dev Tools</h4>
+          <ul class="text-xs space-y-2 text-slate-600 dark:text-slate-300">
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Git & GitHub</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Android Studio</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>VS Code</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Postman</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="achievements" class="scroll-mt-24 space-y-8">
+      <div>
+        <h2 class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 mb-2 font-mono">04. Background</h2>
+        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Education & Honors</h3>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Education Card -->
+        <div class="p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm space-y-6">
+          <h4 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <svg class="w-5 h-5 text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+            <span>Education</span>
+          </h4>
+
+          <div class="space-y-4 border-l-2 border-slate-200 dark:border-slate-800 pl-4 ml-1">
+            <!-- B.Tech -->
+            <div>
+              <span class="text-xs font-mono text-sky-600 dark:text-sky-400">2023 &ndash; 2027</span>
+              <h5 class="font-bold text-slate-900 dark:text-white text-sm">B.Tech, Computer Science & Engineering</h5>
+              <p class="text-xs text-slate-600 dark:text-slate-400">Sharad Institute of Technology College of Engineering, Yadrav (DBATU)</p>
+              <p class="text-xs font-semibold text-slate-800 dark:text-slate-300 mt-0.5">CGPA: 8.21</p>
+            </div>
+
+            <!-- HSC -->
+            <div>
+              <span class="text-xs font-mono text-sky-600 dark:text-sky-400">2023</span>
+              <h5 class="font-bold text-slate-900 dark:text-white text-sm">Higher Secondary Certificate (HSC &ndash; 12th)</h5>
+              <p class="text-xs text-slate-600 dark:text-slate-400">Sharad Science and Commerce College</p>
+              <p class="text-xs font-semibold text-slate-800 dark:text-slate-300 mt-0.5">Percentage: 70.17%</p>
+            </div>
+
+            <!-- SSC -->
+            <div>
+              <span class="text-xs font-mono text-sky-600 dark:text-sky-400">2021</span>
+              <h5 class="font-bold text-slate-900 dark:text-white text-sm">Secondary School Certificate (SSC &ndash; 10th)</h5>
+              <p class="text-xs text-slate-600 dark:text-slate-400">Sanmati Vidyalay, Tardal</p>
+              <p class="text-xs font-semibold text-slate-800 dark:text-slate-300 mt-0.5">Percentage: 86.60%</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Honors & Certifications Card -->
+        <div class="p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm space-y-6 flex flex-col justify-between">
+          <div class="space-y-6">
+            <h4 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <svg class="w-5 h-5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+              <span>Awards & Recognition</span>
+            </h4>
+
+            <div class="space-y-4">
+              <!-- e-Yantra -->
+              <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/50 border border-slate-200 dark:border-slate-800">
+                <div class="flex items-center justify-between mb-1">
+                  <h5 class="text-sm font-bold text-slate-900 dark:text-white">e-Yantra Innovation Challenge (eYIC), IIT Bombay</h5>
+                  <span class="text-xs font-mono text-slate-500">2024–2025</span>
+                </div>
+                <p class="text-xs text-sky-600 dark:text-sky-400 font-semibold mb-1">Top 10 National Finalist</p>
+                <p class="text-xs text-slate-600 dark:text-slate-400">Competed against thousands of student engineering teams nationally, developing sensor hardware and detection pipelines.</p>
+              </div>
+
+              <!-- Cummins -->
+              <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/50 border border-slate-200 dark:border-slate-800">
+                <div class="flex items-center justify-between mb-1">
+                  <h5 class="text-sm font-bold text-slate-900 dark:text-white">Cummins Nurturing Brilliance Scholarship</h5>
+                  <span class="text-xs font-mono text-slate-500">2023–Present</span>
+                </div>
+                <p class="text-xs text-slate-600 dark:text-slate-400">Awarded for high academic achievement and technical aptitude, backed with ongoing corporate mentorship.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Certification block -->
+          <div class="pt-4 border-t border-slate-200 dark:border-slate-800">
+            <span class="text-xs font-mono uppercase text-slate-500">Certifications</span>
+            <div class="flex items-center justify-between mt-1">
+              <span class="text-xs font-medium text-slate-800 dark:text-slate-200">Flutter & Dart - The Complete Guide</span>
+              <span class="text-xs font-mono text-slate-500">Udemy (2026)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="scroll-mt-24">
+      <div class="p-6 sm:p-10 lg:p-12 rounded-3xl bg-white dark:bg-gradient-to-br dark:from-slate-900 dark:to-slate-950 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 shadow-xl relative overflow-hidden">
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+        <div class="space-y-6">
+          <span class="text-xs font-mono text-sky-600 dark:text-sky-400 uppercase font-bold">05. Connect</span>
+          <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Let's build something exceptional together.</h3>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+            I am currently open to Flutter Developer internship opportunities and technical collaborations. Whether you have an app idea, an open role, or want to discuss Flutter architecture, reach out anytime.
+          </p>
+
+          <!-- Contact items -->
+          <div class="flex flex-col sm:flex-row gap-4 pt-2">
+            <!-- Email Button with copy feedback -->
+            <button
+              id="copyEmailBtn"
+              class="px-5 py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-medium text-xs flex items-center justify-center gap-2 transition-all hover:-translate-y-0.5"
+            >
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <span id="copyEmailText">pritam.s0752@gmail.com</span>
+            </button>
+
+            <!-- Phone -->
+            <div
+              class="px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-xs flex items-center justify-center gap-2 transition-all"
+            >
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              <span>+91 9699452838</span>
+            </div>
+          </div>
+
+          <!-- Social Links -->
+          <div class="flex items-center gap-5 pt-4 text-xs text-slate-600 dark:text-slate-400">
+            <a href="https://github.com/PritamSapkal" target="_blank" rel="noopener noreferrer" class="hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-1.5">
+              <span>GitHub</span>
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <span>&bull;</span>
+            <a href="https://www.linkedin.com/in/pritam752/" target="_blank" rel="noopener noreferrer" class="hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-1.5">
+              <span>LinkedIn</span>
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <span>&bull;</span>
+            <span>Sangli, Maharashtra</span>
+          </div>
+        </div>
+        <div class="bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm">
+          <form id="contactForm" action="/api/contact" method="POST" class="space-y-5">
+            <div>
+              <label for="contactName" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">Your Name</label>
+              <input id="contactName" type="text" name="name" required autocomplete="name" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950/70 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm transition-colors" placeholder="Jane Smith" />
+            </div>
+            <div>
+              <label for="contactEmail" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">Your Email</label>
+              <input id="contactEmail" type="email" name="email" required autocomplete="email" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950/70 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm transition-colors" placeholder="jane@example.com" />
+            </div>
+            <div>
+              <label for="contactMessage" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">Your Message</label>
+              <textarea id="contactMessage" name="message" rows="4" required class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950/70 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm transition-colors" placeholder="Tell me a little about what you have in mind..."></textarea>
+            </div>
+            <button id="contactSubmit" type="submit" class="inline-flex w-full items-center justify-center gap-2 px-5 py-3 bg-sky-600 hover:bg-sky-500 text-white font-medium rounded-xl shadow-sm transition focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900 disabled:cursor-wait disabled:opacity-70">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+              <span>Send Message</span>
+            </button>
+            <p id="contactFormStatus" class="hidden text-sm leading-relaxed" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 dark:border-slate-800/80 py-8 text-center text-xs text-slate-500 dark:text-slate-400">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>&copy; 2026 Pritam Vijay Sapkal.</p>
+      <div class="flex items-center gap-4">
+        <a href="#hero" class="hover:text-sky-500">Back to top &uarr;</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Notification Toast for Copy Action -->
+  <div id="toast" class="fixed bottom-6 right-6 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-4 py-2.5 rounded-xl shadow-2xl text-xs font-semibold flex items-center gap-2 z-50">
+    <svg class="w-4 h-4 text-emerald-400 dark:text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+    </svg>
+    <span>Email copied to clipboard!</span>
+  </div>
+
+  <script>
+    (function () {
+      const themeToggleBtn = document.getElementById('themeToggleBtn');
+      const sunIcon = document.getElementById('sunIcon');
+      const moonIcon = document.getElementById('moonIcon');
+      const root = document.documentElement;
+
+      // Theme initialization: Checks localStorage or prefers dark by default
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark) || !savedTheme) {
+        root.classList.add('dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+      } else {
+        root.classList.remove('dark');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      }
+
+      themeToggleBtn.addEventListener('click', () => {
+        if (root.classList.contains('dark')) {
+          root.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+          sunIcon.classList.add('hidden');
+          moonIcon.classList.remove('hidden');
+        } else {
+          root.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+          sunIcon.classList.remove('hidden');
+          moonIcon.classList.add('hidden');
+        }
+      });
+
+      // Mobile Menu Toggle
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Close mobile menu on anchor click
+      mobileMenu.querySelectorAll('a').forEach(anchor => {
+        anchor.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+
+      // Clipboard helper for email
+      const copyBtn = document.getElementById('copyEmailBtn');
+      const toast = document.getElementById('toast');
+      const email = 'pritam.s0752@gmail.com';
+
+      copyBtn.addEventListener('click', () => {
+        const tempInput = document.createElement('input');
+        tempInput.value = email;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        try {
+          document.execCommand('copy');
+          // Show toast
+          toast.classList.remove('translate-y-24', 'opacity-0');
+          setTimeout(() => {
+            toast.classList.add('translate-y-24', 'opacity-0');
+          }, 2500);
+        } catch (err) {
+          console.error('Could not copy', err);
+        }
+        document.body.removeChild(tempInput);
+      });
+
+      const contactForm = document.getElementById('contactForm');
+      const contactSubmit = document.getElementById('contactSubmit');
+      const contactSubmitLabel = contactSubmit.querySelector('span');
+      const contactSubmitIcon = contactSubmit.querySelector('svg');
+      const contactFormStatus = document.getElementById('contactFormStatus');
+
+      contactForm.onsubmit = async (event) => {
+        event.preventDefault();
+        contactSubmit.disabled = true;
+        contactSubmitLabel.textContent = 'Sending...';
+        contactSubmitIcon.classList.add('hidden');
+        contactFormStatus.classList.add('hidden');
+        contactFormStatus.classList.remove('text-emerald-300', 'text-rose-300');
+
+        try {
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(Object.fromEntries(new FormData(contactForm).entries()))
+          });
+          const result = await response.json();
+
+          if (!response.ok || !result.success) {
+            throw new Error(result.message || `Contact request failed with status ${response.status}`);
+          }
+
+          contactForm.reset();
+          contactFormStatus.textContent = 'Message sent successfully!';
+          contactFormStatus.classList.add('text-emerald-300');
+        } catch (error) {
+          console.error('Could not send contact form message', error);
+          contactFormStatus.textContent = "Sorry, your message couldn't be sent. Please try again or email me directly.";
+          contactFormStatus.classList.add('text-rose-300');
+        } finally {
+          contactFormStatus.classList.remove('hidden');
+          contactSubmit.disabled = false;
+          contactSubmitLabel.textContent = 'Send Message';
+          contactSubmitIcon.classList.remove('hidden');
+        }
+      };
+    })();
+  </script>
+</body>
+</html>
