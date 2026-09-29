@@ -1,6 +1,7 @@
 {
+  "cleanUrls": true,
   "rewrites": [
-    { "source": "/", "destination": "/portfolio.html" },
-    { "source": "/api/contact", "destination": "/api/contact.js" }
+    { "source": "/api/contact", "destination": "/api/contact.js" },
+    { "source": "/", "destination": "/index.html" }
   ]
 }

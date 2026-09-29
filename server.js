@@ -14,7 +14,7 @@ app.use(express.static(__dirname));
 
 app.post('/api/contact', contactHandler);
 
-app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'portfolio.html')));
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 
 app.listen(PORT, () => {
   console.log(`Contact server listening on port ${PORT}`);
